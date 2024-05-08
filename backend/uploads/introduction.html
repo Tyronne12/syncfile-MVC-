@@ -1,0 +1,3089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="Introduction - This preparatory course will teach you the basic HTML, CSS, and JS in a week to create simple interactive games." name="description">
+    <meta property="og:image" content="https://hackerhero.s3.us-west-2.amazonaws.com/1.1/assets/images/meta_image/HH%20header.png" name="image">
+
+    <title>Introduction | Hacker Hero</title>
+    <script>
+        var show_hero_name_modal    = "false" === "true";
+        var show_cd_login_modal     = "false" === "true";
+        var show_walkthrough_modal  = false;
+        var show_premium_modal      = false;
+        var is_logged_in            = eval('true');
+    </script>
+
+    
+
+    	
+        <script>
+            var is_with_game_invite_session = "false" === "true";
+            var is_with_game_unlisted_session = "false" === "true";
+        </script>
+    
+
+
+            <link rel="stylesheet" href="/assets_cache/map.vendor.css?v=2.0.1""/>	
+
+            <link rel="stylesheet" href="/assets_cache/map.css?v=2.0.1""/>	
+
+            <script defer src="/assets_cache/map.vendor.js?v=2.0.1"></script>	
+
+            <script>
+                var min_units_rate = '10'
+            </script>
+ 
+            <script defer src="/assets_cache/map.js?v=2.0.1"></script>	
+
+
+
+<!--    DOCU: Sentry issue reporting. This will only report FE bugs encountered on staging and production site 
+        Issues link: https://sentry.io/organizations/village88/issues/?project=5269336 -->
+
+    <script
+        src="https://browser.sentry-cdn.com/5.25.0/bundle.tracing.min.js"
+        integrity="sha384-MxPEqyePOMqaz3prq1TexMEXtfnxqvet9uhebPAm5SI4Pz3Ga9HwbmE5FY2Bah20"
+        crossorigin="anonymous"
+    ></script>
+    <script>
+        Sentry.init({
+            dsn: 'https://0906bc2978aa4305a00585ac89772c53@o351953.ingest.sentry.io/5269336',
+            integrations: [new Sentry.Integrations.BrowserTracing()],
+            environment: `production`,
+            beforeBreadcrumb(breadcrumb, hint) {
+                return breadcrumb.category === "ui.click" ? null : breadcrumb;
+            },
+        });
+        Sentry.configureScope(function(scope) {
+            scope.setUser({"email": "tyronmago@gmail.com"});
+        });
+    </script>
+    
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142991168-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-142991168-1');
+        </script>
+    
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+                <img src="https://cdn.hackerhero.com/1.1/assets/images/global/hh_logo_beta.svg"  alt="Hacker Hero Logo">
+            </a>
+
+            <!-- HH Group new navigation -->
+            <ul id="hh_menu_navigation">
+                
+                <li class=""><a class="nav-link" href="/">Home</a></li>
+                <li class=""><a class="nav-link" href="/groups">Groups</a></li>
+            </ul>
+
+            <!-- Show when in mobile view and already login -->
+            <div id="dropdown_mobile_view" class="nav_icon">
+                <span class="sprite_img"></span>
+            </div>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+            
+                    
+                        <li class="nav-item">
+                            <a class="go_premium_btn nav-link" href="/subscription">Go Pro</a>
+                        </li>
+                    
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
+                                <span class="sprite_img hero_name_initial"><i>T</i></span>
+                            
+                            <span class="header_hero_name">Tyronne</span>
+                            <input type="hidden" name="hero_id" value="5570">
+                        </button>
+
+                        <!-- Will show notification when user uses their credit -->
+                        <div class="credit_notification">
+                            <span>Credits</span>
+                            <p>You used 5 credits to unlock the video solution of Learn to Code.</p>
+                            <button id="close_credit_notification">Okay</button>
+                        </div>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                    
+                            <a class="dropdown-item" href="/">User Dashboard</a>
+                    
+                            <a class="dropdown-item" href="/profile">Profile</a>
+                    
+                            <a class="dropdown-item" href="/credits">Buy Credits <span>| <i class="credits_remaining">29</i>remaining</span></a>
+                    
+                            <a class="dropdown-item" href="/api/__v2__/auth/user/logout" id="logout_btn">Logout</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <ul id="nav_mobile_view_dropdown">
+        
+        
+            <li class="nav_menu_item">
+                <span class="sprite_img premium"></span>
+                <a class="go_premium_btn" href="/subscription">Go Pro</a>
+            </li>
+            
+
+        <li class="nav_menu_item">
+            <span class="sprite_img hero_name_initial"><i class="hero_initial">T</i></span>
+            <span>Tyronne</span>
+        </li>
+
+        <li class="nav_sub_menu">
+            <ul class="sub_menu">
+        
+                <li>
+                    <span class="sprite_img profile"></span>
+                    <a href="/profile">Profile</a>
+                </li>
+        
+                <li class="user_credit_count_mobile">
+                    <span class="sprite_img buy_credits"></span>
+                    <a href="/credits" class="user_credit_count">Buy Credits <span>| 29 remaining</span></a>
+                </li>
+        
+                <li>
+                    <span class="sprite_img logout"></span>
+                    <a href="/api/__v2__/auth/user/logout">Logout</a>
+                </li>
+            </ul>
+        </li>
+
+        </ul>
+        
+    
+<section id="main_container">
+    <aside>
+        <div id="level_progress_container">
+            <a href="/" id="back_to_home_btn"><i class="material-icons">arrow_back</i> Back</a>
+            <div id="level_title_container">
+                <h1>Introduction</h1>
+                <span>Stars: 0/17</span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                <span>Level Progress: 0%</span>
+            </div>
+
+            <!-- For Mobile -->
+                
+        </div>
+        
+        <div id="level_description_container">
+
+            <div id="level_description_content" class="description_content">
+                <div class="render_markdown_result map_content_result">
+                </div>
+                <input type="hidden" id="content_result_markdown" value='This preparatory course will teach you the basic HTML, CSS, and JS in a week to create simple interactive games.'>
+            </div>
+
+
+            <div id="level_rating_container">
+                <span>Rating:</span>
+                <ul class="list-unstyled" id="level_star_rating_list">
+                
+
+        <li class="rating_full_star"></li>
+        
+
+
+        <li class="rating_full_star"></li>
+        
+
+
+        <li class="rating_full_star"></li>
+        
+
+
+        <li class="rating_full_star"></li>
+        
+
+
+        <li class="rating_full_star"></li>
+        
+
+                </ul>
+                <button type="button" id="rate_level_btn"> <span id="rating_num">5.00</span> <span class="divider">|</span> <span class="rate_module_btn">Rate this module</span></button>
+            </div>
+
+        </div>
+        
+    
+        <div class="btn_container">
+            <a href="/introduction/algorithm-i" id="start_level_btn" class="btn btn-success">Start</a>
+        </div>
+    
+    </aside>
+
+    <div id="level_map_container" >
+        <div class="loading_content hidden">
+            <div class="loading_placeholder"></div>
+        </div>
+    
+
+        <ul class="list-unstyled" id="challenges_list">
+
+                
+<li class="subtopic_chip active" 
+    style="transform: translate(672px, 167.5px);" 
+    data-challenge-id="" 
+    data-is-forum="false"
+    data-forum-id=""
+    data-level-id=""
+    data-order-number="" 
+    data-is-recently-completed="false"
+    data-answer-score=""
+    data-is-next="true"
+>
+    <a href="javascript:void(0)">
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">2. Introduction to Algorithm</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+
+
+        <div class="hidden tooltip_content">
+            <h5 class="subtopic_title">2. Introduction to Algorithm</h5>
+    	</div>
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon completed" 
+    style="transform: translate(721px, 251.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="676"
+    data-level-id="179"
+    data-order-number="10" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/5-core-building-blocks">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>5 core building blocks</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;p&gt;All software are created using 5 core building blocks, which are:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;variables (including arrays)&lt;/li&gt;&lt;li&gt;if/else statements&lt;/li&gt;&lt;li&gt;loops (including a for loop)&lt;/li&gt;&lt;li&gt;functions&lt;/li&gt;&lt;li&gt;O ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon completed" 
+    style="transform: translate(768px, 335px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="677"
+    data-level-id="179"
+    data-order-number="11" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/t-diagram-for-functions">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>T-diagram for Functions</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe src=&#34;https://player.vimeo.com/video/269415882&#34; width=&#34;669&#34; height=&#34;376&#34; frame-border=&#34;0&#34; webkit moz  kwframeid=&#34;2&#34; class=&#34;vimeo_responsive&#34; style=&#34;width: 938px; height: 527.186846038864px;&#34; da ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered is_visited active" 
+    style="transform: translate(721px, 418.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="681"
+    data-level-id="179"
+    data-order-number="12" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-i">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm I</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+&lt;p data-children-count=&#34;0&#34;&gt;Predict the output for the following codes.  Please do not run these code directly in the console or JSbin, but do these m ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(625px, 418.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="682"
+    data-level-id="179"
+    data-order-number="13" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-ii">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm II</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+Predict the output for the following code snippets. Please do not run the code directly in the console or JSbin, but do these manually without using  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(576px, 335px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="683"
+    data-level-id="179"
+    data-order-number="14" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/clean-code">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Clean Code</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+&lt;p&gt;Having clean readable code is important.&amp;nbsp; Take a look at some of the code snippets below and make it more readable.&amp;nbsp; Make sure all the s ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(480px, 335px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="684"
+    data-level-id="179"
+    data-order-number="15" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-iii">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm III</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+&lt;p&gt;We want you to get into the habit of using a T-diagram and doing this on paper.&amp;nbsp; This will not only help you during whiteboard exercises but  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(433px, 418.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="685"
+    data-level-id="179"
+    data-order-number="16" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-iv">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm IV</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+&lt;p&gt;Predict the output for the following codes.  Please do not run these code directly in the console or JSbin, but do these manually without using a  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(337px, 418.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="686"
+    data-level-id="179"
+    data-order-number="17" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/naming-conventions">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Naming Conventions</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;p&gt;When naming functions or variables, there are several ways to do this.&amp;nbsp; Depending on the programming language, there are also common conventions used by different languages.&lt;/p&gt;&lt;p&gt;For example, ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(288px, 335px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="687"
+    data-level-id="179"
+    data-order-number="18" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/call-stack-and-orders-of-operations">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Call Stack and Orders of Operations</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/SSK-WRBfTpQ&#34; title=&#34;Order of Operation&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pic ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(241px, 251.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="688"
+    data-level-id="179"
+    data-order-number="19" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-v">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm V</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+&lt;p&gt;By now, we hope you feel comfortable with the prediction challenges.&lt;span class=&#34;Apple-converted-space&#34;&gt;&amp;nbsp; &lt;/span&gt;If not, please make sure you ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(145px, 251.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="689"
+    data-level-id="179"
+    data-order-number="20" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/algorithm-vi">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Algorithm VI</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 5 - 30 minutes
+
+&lt;br&gt;
+
+#### To-do:
+&lt;ol&gt;
+&lt;li&gt;Return the given array, after setting any negative values to zero.&amp;nbsp; For example resetNegatives( [1,2,-1, -3]) should retu ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="subtopic_chip active" 
+    style="transform: translate(49px, 251.25px);" 
+    data-challenge-id="" 
+    data-is-forum="false"
+    data-forum-id=""
+    data-level-id=""
+    data-order-number="" 
+    data-is-recently-completed="false"
+    data-answer-score=""
+    data-is-next="true"
+>
+    <a href="javascript:void(0)">
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">3. Game Algorithms</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+
+
+        <div class="hidden tooltip_content">
+            <h5 class="subtopic_title">3. Game Algorithms</h5>
+    	</div>
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(0px, 335px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="690"
+    data-level-id="180"
+    data-order-number="21" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/overview">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Overview</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;p&gt;The goal of this course is to introduce the basic concepts of computer programming. The course is designed specifically for those who are new to programming.&lt;/p&gt;
+&lt;p&gt;When it comes to coding/program ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(49px, 418.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="691"
+    data-level-id="180"
+    data-order-number="22" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/setting-up-chrome-sublime">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Setting up</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;949&#34; height=&#34;567&#34; src=&#34;https://www.youtube.com/embed/0GQOWJo9oMY&#34; title=&#34;Setting Up Part 1&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pict ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(96px, 502.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="692"
+    data-level-id="180"
+    data-order-number="23" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/basic-javascript">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Basic Javascript</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/6F2wnC2p4G4&#34; title=&#34;Basic JavaScript&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-pictu ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(192px, 502.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="693"
+    data-level-id="180"
+    data-order-number="24" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/ninja-game-i">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Ninja Game I</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/7FUDdsOkIU0&#34; title=&#34;Ninja Game I&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34;  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(241px, 586.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="694"
+    data-level-id="180"
+    data-order-number="25" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/ninja-challenge-i">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Ninja Challenge I</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 10 - 40 minutes
+
+&lt;br&gt;
+
+&lt;h5&gt;Challenges&lt;/h5&gt;
+&lt;ol&gt;
+	&lt;li&gt;How would you get the character to move up?&lt;/li&gt;
+	&lt;li&gt;The character can currently go everywhere, even where leftVal ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(337px, 586.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="699"
+    data-level-id="180"
+    data-order-number="26" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/ninja-game-ii">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Ninja Game II</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/Jj7ZV0YE5JY&#34; title=&#34;Ninja Game II&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&#34; ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(433px, 586.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="700"
+    data-level-id="180"
+    data-order-number="27" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/ninja-challenge-ii">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Ninja Challenge II</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 10 - 40 minutes
+
+&lt;br&gt;
+
+&lt;h5&gt;Challenges&lt;/h5&gt;
+&lt;ol&gt;
+	&lt;li&gt;How would you add the direction of top?&lt;/li&gt;
+	&lt;li&gt;Our Ninja is moving, but it doesn&#39;t look like he&#39;s walking. What  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(529px, 586.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="701"
+    data-level-id="180"
+    data-order-number="28" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/pacman">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Pacman (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: up to 5 hours
+
+&lt;br&gt;
+
+
+
+&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/uMLejdbOjE0&#34; title=&#34;Pacman&#34;  allow=&#34;accelerometer; autoplay; clipboard-write;  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(576px, 670px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="702"
+    data-level-id="180"
+    data-order-number="29" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/1942">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>1942 (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: up to 5 hours
+&lt;iframe width=&#34;949&#34; height=&#34;534&#34; src=&#34;https://www.youtube.com/embed/iXHJ2Xa3lkI&#34; title=&#34;1942&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(672px, 670px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="704"
+    data-level-id="180"
+    data-order-number="30" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/other-games">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Other Games 1 (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: up to 60 hours
+
+&lt;br&gt;
+
+&lt;p&gt;Back when I was teaching, I would do a 1 hour demo where I would ask the students to pick any 2-D game they know and where I build a simple starti ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(721px, 753.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1522"
+    data-level-id="180"
+    data-order-number="31" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/other-games-2-optional">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Other Games 2 (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;h3&gt;Assignment: Spending up to 15 hours, re-create Flappy Bird&lt;/h3&gt;&lt;br&gt;&lt;p&gt;See how Flappy Bird game works. Now re-create a simple version of this game.&lt;/p&gt;
+
+&lt;br&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; s ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(768px, 837.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1525"
+    data-level-id="180"
+    data-order-number="32" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/other-games-3-optional-2">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Other Games 3 (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;h3&gt;Assignment: Spending up to 20 hours, re-create Tetris&lt;/h3&gt;&lt;h3&gt;&lt;/h3&gt;&lt;p&gt;See how Tetris works. Now re-create a simple version of this game.&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;http ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(721px, 921.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1527"
+    data-level-id="180"
+    data-order-number="33" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/other-games-4-optional-2">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Other Games 4 (Optional)</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;h3&gt;Assignment: Spending up to 20 hours, re-create any 2-D game of your choice. &lt;br&gt;&lt;br&gt;Best of luck!&lt;/h3&gt;&lt;h3&gt;&lt;/h3&gt;">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered" 
+    style="transform: translate(625px, 921.25px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="705"
+    data-level-id="180"
+    data-order-number="34" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/programming-iq">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Programming IQ</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&gt;######  Estimated Time: 1 hour
+
+&lt;br&gt;
+
+### NOTE: Do this only if you&#39;re ready to go to the next track (Web Fundamentals)
+
+&lt;br&gt;
+
+Our team at Village88 have created Data Compass.  Data Compass i ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(576px, 837.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1519"
+    data-level-id="180"
+    data-order-number="35" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/good-job">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Good job!</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/Z3M3QMsZUWI&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="subtopic_chip active" 
+    style="transform: translate(0px, 0px);" 
+    data-challenge-id="" 
+    data-is-forum="false"
+    data-forum-id=""
+    data-level-id=""
+    data-order-number="" 
+    data-is-recently-completed="false"
+    data-answer-score=""
+    data-is-next="true"
+>
+    <a href="javascript:void(0)">
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">1. Start Here</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+
+
+        <div class="hidden tooltip_content">
+            <h5 class="subtopic_title">1. Start Here</h5>
+    	</div>
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(49px, 83.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1509"
+    data-level-id="272"
+    data-order-number="1" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/getting-started">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Getting Started</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/xcW5aewotZg&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(145px, 83.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1510"
+    data-level-id="272"
+    data-order-number="2" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/how-the-course-is-structured">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>How the course is structured</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;div class=&#34;video-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;281&#34; src=&#34;//www.youtube.com/embed/mIgxzQwX4_0&#34;   class=&#34;vimeo_responsive&#34; style=&#34;width: 938px; height: 527.156px;&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+
+&lt;br&gt;
+&lt;h2 ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(192px, 0px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1511"
+    data-level-id="272"
+    data-order-number="3" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/hours-expectation">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Hours Expectation</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;div class=&#34;video-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;281&#34; src=&#34;//www.youtube.com/embed/24V3LH98jUM&#34;   class=&#34;vimeo_responsive&#34; style=&#34;width: 938px; height: 527.156px;&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;p&gt;During y ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(288px, 0px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1518"
+    data-level-id="272"
+    data-order-number="4" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/setup-requirements">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Setup requirements</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/05WlKhQgb4I&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(337px, 83.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1512"
+    data-level-id="272"
+    data-order-number="5" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/what-will-be-covered">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>What will be covered</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/tqUGcf-rvd4&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon" 
+    style="transform: translate(384px, 167.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1513"
+    data-level-id="272"
+    data-order-number="6" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/tips-for-the-course">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Tips for the course</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;div class=&#34;video-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;281&#34; src=&#34;//www.youtube.com/embed/VILiFUUmIgM&#34;   class=&#34;vimeo_responsive&#34; style=&#34;width: 938px; height: 527.156px;&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;p&gt;To make  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon completed" 
+    style="transform: translate(480px, 167.5px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1514"
+    data-level-id="272"
+    data-order-number="7" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/more-about-michael">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>More about Michael</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;div class=&#34;video-container&#34;&gt;&lt;iframe width=&#34;500&#34; height=&#34;281&#34; src=&#34;//www.youtube.com/embed/As4S_qgkRSI&#34;   class=&#34;vimeo_responsive&#34; style=&#34;width: 938px; height: 527.156px;&#34;&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;p&gt;Back in  ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip assignment_icon unanswered is_visited" 
+    style="transform: translate(529px, 83.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1516"
+    data-level-id="272"
+    data-order-number="8" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/first-assignment">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>First Assignment</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/48khWnrFWYI&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+ 
+                
+<li class="forum_lesson_chip lesson_icon completed" 
+    style="transform: translate(625px, 83.75px);" 
+    data-challenge-id="" 
+    data-is-forum="true"
+    data-forum-id="1517"
+    data-level-id="272"
+    data-order-number="9" 
+    data-is-recently-completed="false"
+    data-answer-score="0"
+    data-is-next="true"
+>
+    <a href="/introduction/next-part">
+
+        <!-- For Forum -->
+        <!-- <i class="fas fa-users"></i> -->
+        <div class="forum_icons"></div>
+        <i class="far fa-star"></i>
+        <i class="fas fa-star"></i>
+
+
+        <!-- For Challenge -->
+        <span class="challenge_chip_number">FORUM</span>
+
+        <div class="challenge_chip_stars">
+    	
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+        <i class="far fa-star"></i>
+
+        </div>
+        
+            
+        <!-- For Premium Challenge -->
+        <i class="material-icons">lock</i>
+
+        <!-- For Tooltip Content -->
+    </a>
+
+        <div class="hidden tooltip_content">
+    		<h5>Next Part</h5>
+    	    <div class="challenge_description"></div>
+            <input type="hidden" class="markdown_description_result" name="markdown_description_result" value="&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/EJkABwoxrxw&#34; title=&#34;YouTube video player&#34;  allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-p ...">
+    	</div>
+
+
+
+</li>
+    
+        </ul>
+        <!-- Text Based Navigation -->
+        <div id="map_text_navigation" class="text_nav">
+            <h3>Text navigation for "Introduction":</h3>
+            <ol>
+                
+        <li>
+            <a href="introduction/getting-started" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Getting Started</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/how-the-course-is-structured" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">How the course is structured</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/hours-expectation" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Hours Expectation</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/setup-requirements" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Setup requirements</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/what-will-be-covered" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">What will be covered</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/tips-for-the-course" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Tips for the course</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/more-about-michael" class="is_complete">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">More about Michael</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/first-assignment" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">First Assignment</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/next-part" class="is_complete">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Next Part</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/5-core-building-blocks" class="is_complete">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">5 core building blocks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/t-diagram-for-functions" class="is_complete">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">T-diagram for Functions</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-i" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm I</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-ii" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm II</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/clean-code" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Clean Code</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-iii" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm III</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-iv" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm IV</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/naming-conventions" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Naming Conventions</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/call-stack-and-orders-of-operations" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Call Stack and Orders of Operations</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-v" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm V</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/algorithm-vi" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Algorithm VI</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/overview" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Overview</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/setting-up-chrome-sublime" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Setting up</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/basic-javascript" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Basic Javascript</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/ninja-game-i" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Ninja Game I</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/ninja-challenge-i" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Ninja Challenge I</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/ninja-game-ii" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Ninja Game II</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/ninja-challenge-ii" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Ninja Challenge II</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/pacman" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Pacman (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/1942" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">1942 (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/other-games" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Other Games 1 (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/other-games-2-optional" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Other Games 2 (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/other-games-3-optional-2" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Other Games 3 (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/other-games-4-optional-2" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Other Games 4 (Optional)</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/programming-iq" class="">
+                
+                    <span class="unit_icon assignment_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Programming IQ</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="introduction/good-job" class="">
+                
+                    <span class="unit_icon lesson_icon"></span>
+                
+
+                
+
+                <span class="unit_title">Good job!</span>
+            </a>
+        </li>
+
+            </ol>
+        </div>
+    </div>
+</section>  
+
+<form id="language_form" class="hidden" action="/api/__v2__/challenges/game_change_language" data-is-processing="0">
+    <input type="hidden" name="game_url" value="introduction" />
+    <input type="hidden" name="language_id" value="" />
+    <input type="hidden" name="__version" value="v2" />
+    <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+</form>
+
+<form id="rating_form" class="hidden" action="/api/__v2__/games/show_feedback_modal/" data-is-processing="0">
+    <input type="hidden" name="game_id" value="73" />
+    <input type="hidden" name="language_id" value="1" />
+    <input type="hidden" name="total_completed_units" value="6" />
+    <input type="hidden" name="is_auto_show" value="false" />
+    <input type="hidden" name="is_level_completed" value="false" />
+    <input type="hidden" name="__version" value="v2" />
+    <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+</form>
+
+
+
+
+            <form id="hero_ratings_form" class="hidden" action="/api/__v2__/games/fetch_game_ratings/73" data-is-processing="0">
+                <input type="hidden" id="ratings_filter"  name="rating_filter" value="" />
+                <input type="hidden" id="ratings_page_number" name="page_number" value="1" />
+                <input type="hidden" name="__version" value="v2" />
+                <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+            </form>
+
+
+
+            <!-- Toast for saving editing game -->
+            <div id="hh_toast" class="toast hidden" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    <i class="fas fa-check"></i>
+                    <span class="toast_description">Challenge Succesfully Created</span>
+                    <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close"><i class="material-icons">close</i></button>
+                </div>
+            </div>
+            <!-- Toast for live classes -->
+            <div id="live_class_toast" class="live_class_toast hidden" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    <div class="toast_header">
+                        <span class="live_icon">LIVE</span>
+                        <p class="live_class_text"></p>
+                    </div>
+                    <div class="toast_actions">
+                        <button type="button" class="ml-2 dismiss_toast close" data-dismiss="toast">Close</button>
+                        <a class="event_url" href="/" target="_blank">Join Now</a>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+		<!-- Input your name -->
+<div id="input_heroname_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="input_heroname_form" action="/api/__v2__/users/save_hero_name" data-is-processing="0">
+                <span class="hh_user_icon_sprite"></span>
+                <h3>Welcome</h3>
+                <p class="hero_desc">Every Hacker Hero has a name. Let yours be known to all!</p>
+                <div class="hero_name">
+                    <label for="input_hero_name">Your Name</label>
+                    <input id="input_hero_name" type="text" name="hero_name" placeholder="Input your name...">
+                    <p class="hidden">Too short (minimum of 3 characters)</p>
+                    <button id="hero_btn">Continue</button>
+                </div>
+                <p class="note_form">Your hero name will be used throughout the game. Whether you use your real name or hide your identity, it’s all up to you.</p>
+                <input type="hidden" name="__version" value="v2" />
+                <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+            </form>
+        </div>
+    </div>
+</div>
+
+		<!-- Input your name -->
+<div id="select_country_modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="select_country_form" autocomplete="off" action="/api/__v2__/users/save_hero_country" data-is-processing="0">
+                <span class="global_icon_sprite"></span>
+                <h3>Where does <span class="hero_name">{{player name}}</span> <span>live?</span></h3>
+                <p class="login_desc">Select your country and be its pride.</p>
+                <label for="select_hero_country" id="hero_country">
+                    <input type="text" name="country" data-country-id="" id="select_hero_country" placeholder="Select Country">
+                    <span><i class="material-icons">arrow_drop_down</i></span>
+                </label>
+                <ul id="country_list">
+                    <li data-country-id="2">Afghanistan</li> 
+                    <li data-country-id="6">Albania</li> 
+                    <li data-country-id="65">Algeria</li> 
+                    <li data-country-id="11">American Samoa</li> 
+                    <li data-country-id="7">Andorra</li> 
+                    <li data-country-id="3">Angola</li> 
+                    <li data-country-id="4">Anguilla</li> 
+                    <li data-country-id="12">Antarctica</li> 
+                    <li data-country-id="14">Antigua and Barbuda</li> 
+                    <li data-country-id="9">Argentina</li> 
+                    <li data-country-id="10">Armenia</li> 
+                    <li data-country-id="1">Aruba</li> 
+                    <li data-country-id="15">Australia</li> 
+                    <li data-country-id="16">Austria</li> 
+                    <li data-country-id="17">Azerbaijan</li> 
+                    <li data-country-id="26">Bahamas</li> 
+                    <li data-country-id="25">Bahrain</li> 
+                    <li data-country-id="23">Bangladesh</li> 
+                    <li data-country-id="34">Barbados</li> 
+                    <li data-country-id="29">Belarus</li> 
+                    <li data-country-id="19">Belgium</li> 
+                    <li data-country-id="30">Belize</li> 
+                    <li data-country-id="20">Benin</li> 
+                    <li data-country-id="31">Bermuda</li> 
+                    <li data-country-id="36">Bhutan</li> 
+                    <li data-country-id="32">Bolivia</li> 
+                    <li data-country-id="21">Bonaire</li> 
+                    <li data-country-id="27">Bosnia and Herzegovina</li> 
+                    <li data-country-id="38">Botswana</li> 
+                    <li data-country-id="37">Bouvet Island</li> 
+                    <li data-country-id="33">Brazil</li> 
+                    <li data-country-id="106">British Indian Ocean Territory</li> 
+                    <li data-country-id="240">British Virgin Islands</li> 
+                    <li data-country-id="35">Brunei</li> 
+                    <li data-country-id="24">Bulgaria</li> 
+                    <li data-country-id="22">Burkina Faso</li> 
+                    <li data-country-id="18">Burundi</li> 
+                    <li data-country-id="120">Cambodia</li> 
+                    <li data-country-id="46">Cameroon</li> 
+                    <li data-country-id="40">Canada</li> 
+                    <li data-country-id="52">Cape Verde</li> 
+                    <li data-country-id="57">Cayman Islands</li> 
+                    <li data-country-id="39">Central African Republic</li> 
+                    <li data-country-id="217">Chad</li> 
+                    <li data-country-id="43">Chile</li> 
+                    <li data-country-id="44">China</li> 
+                    <li data-country-id="56">Christmas Island</li> 
+                    <li data-country-id="41">Cocos [Keeling] Islands</li> 
+                    <li data-country-id="50">Colombia</li> 
+                    <li data-country-id="51">Comoros</li> 
+                    <li data-country-id="49">Cook Islands</li> 
+                    <li data-country-id="53">Costa Rica</li> 
+                    <li data-country-id="100">Croatia</li> 
+                    <li data-country-id="54">Cuba</li> 
+                    <li data-country-id="55">Curacao</li> 
+                    <li data-country-id="58">Cyprus</li> 
+                    <li data-country-id="59">Czech Republic</li> 
+                    <li data-country-id="47">Democratic Republic of the Congo</li> 
+                    <li data-country-id="63">Denmark</li> 
+                    <li data-country-id="61">Djibouti</li> 
+                    <li data-country-id="62">Dominica</li> 
+                    <li data-country-id="64">Dominican Republic</li> 
+                    <li data-country-id="223">East Timor</li> 
+                    <li data-country-id="66">Ecuador</li> 
+                    <li data-country-id="67">Egypt</li> 
+                    <li data-country-id="201">El Salvador</li> 
+                    <li data-country-id="89">Equatorial Guinea</li> 
+                    <li data-country-id="68">Eritrea</li> 
+                    <li data-country-id="71">Estonia</li> 
+                    <li data-country-id="72">Ethiopia</li> 
+                    <li data-country-id="75">Falkland Islands</li> 
+                    <li data-country-id="77">Faroe Islands</li> 
+                    <li data-country-id="74">Fiji</li> 
+                    <li data-country-id="73">Finland</li> 
+                    <li data-country-id="76">France</li> 
+                    <li data-country-id="94">French Guiana</li> 
+                    <li data-country-id="186">French Polynesia</li> 
+                    <li data-country-id="13">French Southern Territories</li> 
+                    <li data-country-id="79">Gabon</li> 
+                    <li data-country-id="87">Gambia</li> 
+                    <li data-country-id="81">Georgia</li> 
+                    <li data-country-id="60">Germany</li> 
+                    <li data-country-id="83">Ghana</li> 
+                    <li data-country-id="84">Gibraltar</li> 
+                    <li data-country-id="90">Greece</li> 
+                    <li data-country-id="92">Greenland</li> 
+                    <li data-country-id="91">Grenada</li> 
+                    <li data-country-id="86">Guadeloupe</li> 
+                    <li data-country-id="95">Guam</li> 
+                    <li data-country-id="93">Guatemala</li> 
+                    <li data-country-id="82">Guernsey</li> 
+                    <li data-country-id="85">Guinea</li> 
+                    <li data-country-id="88">Guinea-Bissau</li> 
+                    <li data-country-id="96">Guyana</li> 
+                    <li data-country-id="101">Haiti</li> 
+                    <li data-country-id="98">Heard Island and McDonald Islands</li> 
+                    <li data-country-id="99">Honduras</li> 
+                    <li data-country-id="97">Hong Kong</li> 
+                    <li data-country-id="102">Hungary</li> 
+                    <li data-country-id="110">Iceland</li> 
+                    <li data-country-id="105">India</li> 
+                    <li data-country-id="103">Indonesia</li> 
+                    <li data-country-id="108">Iran</li> 
+                    <li data-country-id="109">Iraq</li> 
+                    <li data-country-id="107">Ireland</li> 
+                    <li data-country-id="104">Isle of Man</li> 
+                    <li data-country-id="111">Israel</li> 
+                    <li data-country-id="112">Italy</li> 
+                    <li data-country-id="45">Ivory Coast</li> 
+                    <li data-country-id="113">Jamaica</li> 
+                    <li data-country-id="116">Japan</li> 
+                    <li data-country-id="114">Jersey</li> 
+                    <li data-country-id="115">Jordan</li> 
+                    <li data-country-id="117">Kazakhstan</li> 
+                    <li data-country-id="118">Kenya</li> 
+                    <li data-country-id="121">Kiribati</li> 
+                    <li data-country-id="246">Kosovo</li> 
+                    <li data-country-id="124">Kuwait</li> 
+                    <li data-country-id="119">Kyrgyzstan</li> 
+                    <li data-country-id="125">Laos</li> 
+                    <li data-country-id="135">Latvia</li> 
+                    <li data-country-id="126">Lebanon</li> 
+                    <li data-country-id="132">Lesotho</li> 
+                    <li data-country-id="127">Liberia</li> 
+                    <li data-country-id="128">Libya</li> 
+                    <li data-country-id="130">Liechtenstein</li> 
+                    <li data-country-id="133">Lithuania</li> 
+                    <li data-country-id="134">Luxembourg</li> 
+                    <li data-country-id="136">Macao</li> 
+                    <li data-country-id="145">Macedonia</li> 
+                    <li data-country-id="141">Madagascar</li> 
+                    <li data-country-id="157">Malawi</li> 
+                    <li data-country-id="158">Malaysia</li> 
+                    <li data-country-id="142">Maldives</li> 
+                    <li data-country-id="146">Mali</li> 
+                    <li data-country-id="147">Malta</li> 
+                    <li data-country-id="144">Marshall Islands</li> 
+                    <li data-country-id="155">Martinique</li> 
+                    <li data-country-id="153">Mauritania</li> 
+                    <li data-country-id="156">Mauritius</li> 
+                    <li data-country-id="159">Mayotte</li> 
+                    <li data-country-id="143">Mexico</li> 
+                    <li data-country-id="78">Micronesia</li> 
+                    <li data-country-id="140">Moldova</li> 
+                    <li data-country-id="139">Monaco</li> 
+                    <li data-country-id="150">Mongolia</li> 
+                    <li data-country-id="149">Montenegro</li> 
+                    <li data-country-id="154">Montserrat</li> 
+                    <li data-country-id="138">Morocco</li> 
+                    <li data-country-id="152">Mozambique</li> 
+                    <li data-country-id="148">Myanmar [Burma]</li> 
+                    <li data-country-id="160">Namibia</li> 
+                    <li data-country-id="170">Nauru</li> 
+                    <li data-country-id="169">Nepal</li> 
+                    <li data-country-id="167">Netherlands</li> 
+                    <li data-country-id="161">New Caledonia</li> 
+                    <li data-country-id="171">New Zealand</li> 
+                    <li data-country-id="165">Nicaragua</li> 
+                    <li data-country-id="162">Niger</li> 
+                    <li data-country-id="164">Nigeria</li> 
+                    <li data-country-id="166">Niue</li> 
+                    <li data-country-id="163">Norfolk Island</li> 
+                    <li data-country-id="182">North Korea</li> 
+                    <li data-country-id="151">Northern Mariana Islands</li> 
+                    <li data-country-id="168">Norway</li> 
+                    <li data-country-id="172">Oman</li> 
+                    <li data-country-id="173">Pakistan</li> 
+                    <li data-country-id="178">Palau</li> 
+                    <li data-country-id="185">Palestine</li> 
+                    <li data-country-id="174">Panama</li> 
+                    <li data-country-id="179">Papua New Guinea</li> 
+                    <li data-country-id="184">Paraguay</li> 
+                    <li data-country-id="176">Peru</li> 
+                    <li data-country-id="177">Philippines</li> 
+                    <li data-country-id="175">Pitcairn Islands</li> 
+                    <li data-country-id="180">Poland</li> 
+                    <li data-country-id="183">Portugal</li> 
+                    <li data-country-id="181">Puerto Rico</li> 
+                    <li data-country-id="187">Qatar</li> 
+                    <li data-country-id="48">Republic of the Congo</li> 
+                    <li data-country-id="188">Réunion</li> 
+                    <li data-country-id="189">Romania</li> 
+                    <li data-country-id="190">Russia</li> 
+                    <li data-country-id="191">Rwanda</li> 
+                    <li data-country-id="28">Saint Barthélemy</li> 
+                    <li data-country-id="197">Saint Helena</li> 
+                    <li data-country-id="122">Saint Kitts and Nevis</li> 
+                    <li data-country-id="129">Saint Lucia</li> 
+                    <li data-country-id="137">Saint Martin</li> 
+                    <li data-country-id="204">Saint Pierre and Miquelon</li> 
+                    <li data-country-id="238">Saint Vincent and the Grenadines</li> 
+                    <li data-country-id="245">Samoa</li> 
+                    <li data-country-id="202">San Marino</li> 
+                    <li data-country-id="207">São Tomé and Príncipe</li> 
+                    <li data-country-id="192">Saudi Arabia</li> 
+                    <li data-country-id="194">Senegal</li> 
+                    <li data-country-id="205">Serbia</li> 
+                    <li data-country-id="214">Seychelles</li> 
+                    <li data-country-id="200">Sierra Leone</li> 
+                    <li data-country-id="195">Singapore</li> 
+                    <li data-country-id="213">Sint Maarten</li> 
+                    <li data-country-id="209">Slovakia</li> 
+                    <li data-country-id="210">Slovenia</li> 
+                    <li data-country-id="199">Solomon Islands</li> 
+                    <li data-country-id="203">Somalia</li> 
+                    <li data-country-id="248">South Africa</li> 
+                    <li data-country-id="196">South Georgia and the South Sandwich Islands</li> 
+                    <li data-country-id="123">South Korea</li> 
+                    <li data-country-id="206">South Sudan</li> 
+                    <li data-country-id="70">Spain</li> 
+                    <li data-country-id="131">Sri Lanka</li> 
+                    <li data-country-id="193">Sudan</li> 
+                    <li data-country-id="208">Suriname</li> 
+                    <li data-country-id="198">Svalbard and Jan Mayen</li> 
+                    <li data-country-id="212">Swaziland</li> 
+                    <li data-country-id="211">Sweden</li> 
+                    <li data-country-id="42">Switzerland</li> 
+                    <li data-country-id="215">Syria</li> 
+                    <li data-country-id="229">Taiwan</li> 
+                    <li data-country-id="220">Tajikistan</li> 
+                    <li data-country-id="230">Tanzania</li> 
+                    <li data-country-id="219">Thailand</li> 
+                    <li data-country-id="218">Togo</li> 
+                    <li data-country-id="221">Tokelau</li> 
+                    <li data-country-id="224">Tonga</li> 
+                    <li data-country-id="225">Trinidad and Tobago</li> 
+                    <li data-country-id="226">Tunisia</li> 
+                    <li data-country-id="227">Turkey</li> 
+                    <li data-country-id="222">Turkmenistan</li> 
+                    <li data-country-id="216">Turks and Caicos Islands</li> 
+                    <li data-country-id="228">Tuvalu</li> 
+                    <li data-country-id="233">U.S. Minor Outlying Islands</li> 
+                    <li data-country-id="241">U.S. Virgin Islands</li> 
+                    <li data-country-id="231">Uganda</li> 
+                    <li data-country-id="232">Ukraine</li> 
+                    <li data-country-id="8">United Arab Emirates</li> 
+                    <li data-country-id="80">United Kingdom</li> 
+                    <li data-country-id="235">United States</li> 
+                    <li data-country-id="234">Uruguay</li> 
+                    <li data-country-id="236">Uzbekistan</li> 
+                    <li data-country-id="243">Vanuatu</li> 
+                    <li data-country-id="237">Vatican City</li> 
+                    <li data-country-id="239">Venezuela</li> 
+                    <li data-country-id="242">Vietnam</li> 
+                    <li data-country-id="244">Wallis and Futuna</li> 
+                    <li data-country-id="69">Western Sahara</li> 
+                    <li data-country-id="247">Yemen</li> 
+                    <li data-country-id="249">Zambia</li> 
+                    <li data-country-id="250">Zimbabwe</li> 
+                    <li data-country-id="5">Åland</li> 
+                </ul>
+                <input type="hidden" name="__version" value="v2" />
+                <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+                <button id="skip_btn" data-dismiss="modal">Skip</button>
+                <button id="submit" class="user_form_cta_done">Done</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+		<!-- MODALS -->
+<div id="login_confirmation_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/api/__v2__/users/check_cd_login" id="login_confirmation_form" autocomplete="off">
+                <input type="hidden" name="__version" value="v2" />
+                <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+                <span class="hh_user_icon_sprite"></span>
+                <h3>Confirmation</h3>
+                <p>Claim your 1-year FREE subscription by logging in with your Coding Dojo Learning Platform account.</p>
+                <input type="text" name="email" class="user_input" id="email" placeholder="Your email address">
+                <input type="password" name="password" class="user_input" id="user_pass" placeholder="Your password">
+                <span class="error_message hidden"></span>
+                <button type="submit" id="confirmation_btn">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+		<!-- Login modal -->
+<div id="login_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <span class="hh_user_icon_sprite"></span>
+            <h2>Log In</h2>
+            <p class="login_desc">
+            
+                Log in so your best work can be saved as your advances through the game.
+            
+            </p>
+            <div id="login_actions">
+                <a href="/api/__v2__/auth/google/?redirect_uri=/introduction" id="google"><i class="fab fa-google"></i> Log In with Google</a>
+                <a href="/api/__v2__/auth/facebook/?redirect_uri=/introduction" id="facebook"><i class="fab fa-facebook-f"></i> Log In with Facebook</a>
+            </div>
+            <p>By logging in, I agree to Hacker Hero's <a href="/terms-and-condition" target="_blank">Terms of Service</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.</p>
+        </div>
+    </div>
+</div>
+
+		<!-- Oops Modal -->
+<div id="warning_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="warning_wrapper">
+                <picture>
+                  <source type="image/svg+xml" srcset="https://cdn.hackerhero.com/1.1/assets/images/global/hh_logo_beta.svg">
+                  <img id="hackerhero_logo_img" src="https://cdn.hackerhero.com/1.1/assets/images/global/hackerhero-beta-logo-small.png" alt="hackerhero logo">
+                </picture>
+                <img id="warning_img" src="https://cdn.hackerhero.com/1.1/assets/images/maintenance/hackerhero-maintenance-icon.png" alt="Warning image for maintenance">
+                <h3>Oops!</h3>
+                <p>We apologize for the inconvenience. We encountered an internal error or misconfiguration and was unable to complete your request.</p>
+                <p id="note_to_reload">To continue, please reload the page. Thank you!</p>
+                <div id="warning_btn">
+                    <a class="reload_btn" href="#" onClick="history.go(0);">Reload</a>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+		<!-- Global - Video Modal -->
+<div class="modal fade" id="video_modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">close</i>
+                </button>     
+                
+                <div id="video_container">
+                    <iframe src="https://player.vimeo.com/video/389911534" allow=autoplay mozallowfullscreen webkitallowfullscreen allowfullscreen></iframe>
+                </div>
+                <!--  Hidden Video answer URL -->
+                <input type="hidden" name="video_answer_url" value="">
+            </div>
+        </div>
+    </div>
+</div>   
+
+		<!-- Feedback Modal -->
+<div class="modal fade" id="feedback_modal" tabindex="-1" role="dialog"  aria-hidden="true" data-backdrop="true" data-keyboard="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+		<!-- Cannot Rate Yet Modal -->
+<div class="modal fade" id="cannot_rate_yet_modal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cannot Rate Yet</h5>
+            </div>
+            <div class="modal-body">
+                <p>Thank you, but we only allow users who solved at least <span id="min_units_rate">10</span> units to write a review.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+		<!-- Login modal -->
+<div id="course_subscription_modal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="course_subscription_form" action="/api/__v2__/level_modules/unlisted_game_option/" method="POST" data-is-processing="0">
+                <span class="hh_user_icon_sprite"></span>
+                <h2>Course Subscription</h2>
+                <p>Welcome! You’ve been invited to access <span>Introduction</span>. Would you like to subscribe to this exclusive course?</p>
+                
+                <input id="unlisted_game_action_type" type="hidden" name="action_type" value="true" />
+                <input type="hidden" name="__version" value="v2" />
+                <input type="hidden" name="__key" value="MTAxMTc4NDk1NjQ1NDM1X192Ml9f" />
+                <button type="submit" class="btn cancel_course_subscription">No</button>
+                <button type="submit" class="btn submit_course_subscription">Yes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+		<!-- Modal for game card that the user can rate each of the game -->
+<div id="rate_game_card_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+
+    <div class="credit_popover_content hidden">
+        <h3>Credits</h3>
+        <p>Credits are used to unlock video solutions and access premium contents. You can buy more credits for as low as $5.</p>
+        <a class="buy_credit_link" href="/credits" target="_blank">Buy Credits</a>
+    </div>
+    
+    <div class="popover_template_container hidden">
+        <div class="popover credit_popover_template" role="tooltip">
+            <div class="arrow"></div>
+            <h3 class="popover-header"></h3>
+            <div class="popover-body"></div>
+        </div>
+    </div>
+    
+    <!-- FACEBOOK SHARE FEATURE-->
+    <div id="fb-root"></div>
+</body>
+</html>

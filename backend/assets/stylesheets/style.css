@@ -1,0 +1,66 @@
+body{
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input{
+    display: block;
+    margin-left: 160px;
+    margin-top: 5px;
+}
+
+div{
+    display: inline-block;
+    width: 500px;
+   margin: 20px;
+   vertical-align: top;
+   height: 280px;
+   border-style: solid;
+   border-radius: 10px;
+   
+}
+
+.button{
+   
+   display: block;
+   font-size: 12px;
+   font-weight: bold;
+   text-decoration: none;
+   cursor: pointer;
+   border-radius: 4px;
+   background-color: #ffffff; 
+   color: #000000; 
+   transition: background-color 0.3s ease;
+   border-color: #000000;
+   border-width: 2px;
+   height: 25px;
+}
+
+.button:hover {
+   background-color: rgb(35, 82, 54);
+}
+
+main{
+    width: 50%;
+    height: 300px;
+    border-style: solid;
+    display: inline-block;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-radius: 5px;
+}
+
+#logout{
+    display: inline-block;
+    width: 50%;
+}
+
+#logout_btn{
+    margin-left: 580px;
+}
+
+#logout_btn:hover{
+    background-color: gray;
+    color: white;
+}

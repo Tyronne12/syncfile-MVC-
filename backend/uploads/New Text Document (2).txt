@@ -1,0 +1,16 @@
+To explain this further let's define both. "Bad UX + Good UI" means that the overall aesthetic of the app is visually appealing to the users. However, it falls short when it comes to the overall user experience. The keys and navigation are hard to manage, the logic and order of inputs are messy, giving a bad impression to the users. "Good UX + Bad UI" means that while the app is subpar when it comes visuals, it makes the use of buttons, inputs and navigation efficient and easy to manage. This makes the user overlook the visual appeal of the app, and focus more on the usability, ease of use and functionality. Having said so, users prefer to have an app that is easy to use but visually lacking rather than an aesthetically appealing UI but difficult to use.
+
+React hooks are used to render states without using classes. They are efficient and concise and introduces countless possibilities to induce side effects when using react. Its use ranges from dynamic rendering of pages to simulating complex functions and logic. There are different react hooks such as useState, useEffect, useContext, and useReducer.
+
+
+
+I was able to complete the following features:
+1. Adding task logs for each task type (frontend, backend).
+2. Delete feature for each task.
+3. Adding of sub-tasks for the selected task.
+4. Clickable tasks, and dynamic rendering of the subtasks.
+5. Option status for each subtask and having it inherit the background-color based on the selected status.
+6. Storing of data in the local storage.
+
+Feature I was not able to finish.
+1. Percentage bar for each task based on the average status of subtasks.
